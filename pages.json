@@ -1,0 +1,82 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle":"custom"
+			}
+		}
+	    ,{
+            "path" : "pages/classify/classify",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/shoppingCart/shoppingCart",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/personCenter/personCenter",
+            "style" : {
+				"navigationStyle":"custom"
+			}
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" : {
+				// "navigationBarTitleText": ""
+				// // "navigationStyle":"custom"
+			}
+        }
+        ,{
+            "path" : "pages/regist/regist",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/shopDetil/shopDetil",
+            "style" : {
+				"navigationBarTitleText":"商品详情"
+
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar" : {
+	    "color" : "#B5B5B5",
+	    "selectedColor" : "#23BAEF",
+	    "borderStyle" : "black",
+	    "backgroundColor" : "#FFFFFF",
+	    "list" : [
+	        {
+				"pagePath":"pages/index/index",
+				"text":"首页",
+				"iconPath":"static/tabbar1.png",
+				"selectedIconPath":"static/tabbar1-1.png"
+	        },
+			{
+				"pagePath":"pages/classify/classify",
+				"text":"分类",
+				"iconPath":"static/tabbar2.png",
+				"selectedIconPath":"static/tabbar2-1.png"
+			},
+			{
+				"pagePath":"pages/shoppingCart/shoppingCart",
+				"text":"购物车",
+				"iconPath":"static/tabbar3.png",
+				"selectedIconPath":"static/tabbar3-1.png"
+			},
+			{
+				"pagePath":"pages/personCenter/personCenter",
+				"text":"我的",
+				"iconPath":"static/tabbar4.png",
+				"selectedIconPath":"static/tabbar4-1.png"
+			}
+		
+	    ]
+	}
+}
