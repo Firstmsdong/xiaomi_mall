@@ -88,17 +88,33 @@
 	    <!-- 服务弹窗 -->
 		<ServerView @close="closeServerView" v-if="serverShow==true" class="server"></ServerView>
 		<!-- 商品选择弹框布局 -->
-		<template v-if="shopClassShow == true">
-			<view class="">
-			      <view class="serverBg"></view>
-				  <view class="serverCon">
-				  	<view class="serverCon-title u-f">
-				  		<view class="">服务说明</view>
-				  	</view>
-				 <view class="sureBtn u-f-ajc" @click="closeServerView">确定</view>
+		<view class="shopDesl" v-if="shopClassShow == true">
+			<view class="shopDeslBg">
+				<view class="shopDeslCon">
+					<view class="shopDeslCon-head u-f">
+						<view class="shopDeslCon-head-image">
+							<image src="../../static/image/dimg1.jpg" mode=""></image>
+						</view>
+						<view class="shopDeslCon-head-title">
+							<view class="">300</view>
+							<view class="">魅族16sp</view>
+						</view>
+						<view class="shopDeslCon-head-close">
+						     <image src="../../static/image/error.png" mode=""></image>
+						</view>
+					</view>
+					<view class="shopDeslCon-select">
+						<view class="shopDeslCon-select-itme">
+							<view class="shopDeslCon-select-itme-title">版本</view>
+							<view class="u-f shopDeslCon-select-itme-con">
+								<view class="">魅族16S Pro</view>
+								<view class="">魅族16th Plus</view>
+							</view>
+						</view>
+					</view>
+				</view>
 			</view>
-		</template>
-		
+		</view>
 	</view>
 </template>
 
@@ -179,14 +195,17 @@
 .server{position: fixed;top: 0;left: 0;bottom: 0;right: 0;}
 
 /* 选择商品 */
-	.serverBg{position: fixed;top: 0;bottom: 0;left: 0;right: 0;background-color: rgb(0,0,0,0.5);}
-	.serverCon{position: absolute;width: 100%;height: 1050rpx;bottom: 90rpx;background-color: #FFFFFF;}
-	.serverCon-title>view:first-child{line-height: 110rpx;text-align: center;font-size: 32rpx;color: #000000;margin-left: 60rpx;flex: 1;}
-	.serverCon-title>view:last-child{width: 60rpx;height: 110rpx;}
-	.serverCon-title image{width: 40rpx;height: 40rpx;}
-	.sureBtn{position: absolute;bottom: 0rpx;width: 100%;height: 90rpx;font-size: 28rpx;color: #FFFFFF;background-color: #00C3F5;text-align: center;}
-
-
-
-
+.shopDeslBg{position: fixed;top: 0;bottom: 0;left: 0;right: 0;background-color: rgb(0,0,0,0.5);}
+.shopDeslCon{position: absolute;width: 100%;height: 1050rpx;bottom: 0rpx;background-color: #FFFFFF;}
+.shopDeslCon-head{border-bottom: 1rpx solid #E5E5E5;padding-bottom: 90rpx;}
+.shopDeslCon-head-image{width: 210rpx;height: 210rpx;position: absolute;top: -40rpx;left: 40rpx;}
+.shopDeslCon-head-image image{width: 210rpx;height: 210rpx}
+.shopDeslCon-head-title {margin-left: 290rpx;padding-top: 25rpx;;}
+.shopDeslCon-head-title>view:nth-child(1) {font-size: 36rpx;color: #FF0000;height: 44rpx;}
+.shopDeslCon-head-title>view:nth-child(2) {font-size: 24rpx;color: #000000;height: 40rpx;margin-top: 10rpx;}
+.shopDeslCon-head-close{width: 40rpx;height: 40rpx;position: absolute;right: 10rpx;top: 20rpx;}
+.shopDeslCon-head-close image{width: 40rpx;height: 40rpx;}
+.shopDeslCon-select-itme{padding-left: 20rpx;padding-right: 20rpx;width: 100%;}
+.shopDeslCon-select-itme-title{color: #A7A7A9;height: 70rx;font-size: 24rpx;text-align: left;line-height: 70rpx;}
+.shopDeslCon-select-itme-con>view{line-height: 72rpx;color: 24rpx;padding-left: 30rpx;padding-right: 30rpx;text-align: center;border: 1rpx solid #00C3F5;margin-right: 20rpx;}
 </style>
