@@ -107,10 +107,12 @@
 						<view class="shopDeslCon-select-itme">
 							<view class="shopDeslCon-select-itme-title">版本</view>
 							<view class="u-f shopDeslCon-select-itme-con">
-								<view class="">魅族16S Pro</view>
-								<view class="">魅族16th Plus</view>
+								<view class="shopDeslCon-select-itme-con-item activeAttr">魅族16S Pro</view>
+								<view class="shopDeslCon-select-itme-con-item">魅族16th Plus</view>
+								
 							</view>
 						</view>
+						
 					</view>
 				</view>
 			</view>
@@ -207,5 +209,7 @@
 .shopDeslCon-head-close image{width: 40rpx;height: 40rpx;}
 .shopDeslCon-select-itme{padding-left: 20rpx;padding-right: 20rpx;width: 100%;}
 .shopDeslCon-select-itme-title{color: #A7A7A9;height: 70rx;font-size: 24rpx;text-align: left;line-height: 70rpx;}
-.shopDeslCon-select-itme-con>view{line-height: 72rpx;color: 24rpx;padding-left: 30rpx;padding-right: 30rpx;text-align: center;border: 1rpx solid #00C3F5;margin-right: 20rpx;}
+.shopDeslCon-select-itme-con-item{line-height: 72rpx;color: 24rpx;padding-left: 30rpx;padding-right: 30rpx;text-align: center;border: 1rpx solid #666;color: #666;float:left;height: 72rpx;margin-right: 20rpx;}
+/* border: 1rpx solid #00C3F5;margin-right: 20rpx; */
+.shopDeslCon-select-itme-con-item.activeAttr{border: 1rpx solid #00C3F5;color:#00C3F5 ;}
 </style>
