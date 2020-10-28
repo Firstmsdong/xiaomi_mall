@@ -87,37 +87,9 @@
 		</view>
 	    <!-- 服务弹窗 -->
 		<ServerView @close="closeServerView" v-if="serverShow==true" class="server"></ServerView>
-		<!-- 商品选择弹框布局 -->
-		<view class="shopDesl" v-if="shopClassShow == true">
-			<view class="shopDeslBg">
-				<view class="shopDeslCon">
-					<view class="shopDeslCon-head u-f">
-						<view class="shopDeslCon-head-image">
-							<image src="../../static/image/dimg1.jpg" mode=""></image>
-						</view>
-						<view class="shopDeslCon-head-title">
-							<view class="">300</view>
-							<view class="">魅族16sp</view>
-						</view>
-						<view class="shopDeslCon-head-close">
-						     <image src="../../static/image/error.png" mode=""></image>
-						</view>
-					</view>
-					<view class="shopDeslCon-select">
-						<view class="shopDeslCon-select-itme">
-							<view class="shopDeslCon-select-itme-title">版本</view>
-							<view class="u-f shopDeslCon-select-itme-con">
-								<view class="shopDeslCon-select-itme-con-item activeAttr">魅族16S Pro</view>
-								<view class="shopDeslCon-select-itme-con-item">魅族16th Plus</view>
-								
-							</view>
-						</view>
-						
-					</view>
-				</view>
-			</view>
+		<!-- 选择商品规格弹框布局 -->
+		<!-- <ShopClassSel @close="closeShopsel" v-if="shopClassShow == true" class="server"></ShopClassSel> -->
 		</view>
-	</view>
 </template>
 
 <script>
@@ -125,15 +97,17 @@
 	import ShopDetilSwiper from '../../components/shopDetil/shopDetil-swiper.vue'
 	import ShopDes from '../../components/shopDetil/shopDetil-shopDes.vue'
 	import ServerView from '../../components/shopDetil/shopDetil-serverDes.vue'
+	import ShopClassSel from '../../components/shopDetil/shopdetil-shopClassSel.vue'
 	export default {
 		components:{
-			ShopDetilSwiper,ShopDes,ServerView
+			ShopDetilSwiper,ShopDes,ServerView,ShopClassSel
 		},
 		data() {
 			return {
 				tab:0,
 				serverShow:false,
 				shopClassShow:false,
+				
 			}
 		},
 		methods: {
@@ -148,10 +122,14 @@
 			openSeverView(){
 				this.serverShow=true
 			},
-			//选择商品尺寸
+			//选择商品规格页面
 			selectShop(){
 				console.log('点击了')
 				this.shopClassShow = true
+			},
+			//关闭商品规格选择弹窗页面
+			closeShopsel(){
+				this.shopClassShow = false
 			}
 			
 			
@@ -161,7 +139,6 @@
 
 <style>
 .pageLine{width: 100%;height: 20rpx;background-color: #F7F7F7;}
-
 .shopDerver{height: 80rpx;padding: 10rpx 30rpx;}
 .shopDerverItem{margin-right: 20rpx;}
 .shopDerverItem image{width: 25rpx;height: 25rpx;margin-right: 5rpx;}
@@ -195,21 +172,4 @@
 .addCart{width: 36.67%;height: 100rpx;background-color: #0EBCEF;color: #FFFFFF;font-size: 24rpx;}
 .buy{width:36.67% ;height: 100rpx;background-color: #017CFE;color: #FFFFFF;font-size: 24rpx;}
 .server{position: fixed;top: 0;left: 0;bottom: 0;right: 0;}
-
-/* 选择商品 */
-.shopDeslBg{position: fixed;top: 0;bottom: 0;left: 0;right: 0;background-color: rgb(0,0,0,0.5);}
-.shopDeslCon{position: absolute;width: 100%;height: 1050rpx;bottom: 0rpx;background-color: #FFFFFF;}
-.shopDeslCon-head{border-bottom: 1rpx solid #E5E5E5;padding-bottom: 90rpx;}
-.shopDeslCon-head-image{width: 210rpx;height: 210rpx;position: absolute;top: -40rpx;left: 40rpx;}
-.shopDeslCon-head-image image{width: 210rpx;height: 210rpx}
-.shopDeslCon-head-title {margin-left: 290rpx;padding-top: 25rpx;;}
-.shopDeslCon-head-title>view:nth-child(1) {font-size: 36rpx;color: #FF0000;height: 44rpx;}
-.shopDeslCon-head-title>view:nth-child(2) {font-size: 24rpx;color: #000000;height: 40rpx;margin-top: 10rpx;}
-.shopDeslCon-head-close{width: 40rpx;height: 40rpx;position: absolute;right: 10rpx;top: 20rpx;}
-.shopDeslCon-head-close image{width: 40rpx;height: 40rpx;}
-.shopDeslCon-select-itme{padding-left: 20rpx;padding-right: 20rpx;width: 100%;}
-.shopDeslCon-select-itme-title{color: #A7A7A9;height: 70rx;font-size: 24rpx;text-align: left;line-height: 70rpx;}
-.shopDeslCon-select-itme-con-item{line-height: 72rpx;color: 24rpx;padding-left: 30rpx;padding-right: 30rpx;text-align: center;border: 1rpx solid #666;color: #666;float:left;height: 72rpx;margin-right: 20rpx;}
-/* border: 1rpx solid #00C3F5;margin-right: 20rpx; */
-.shopDeslCon-select-itme-con-item.activeAttr{border: 1rpx solid #00C3F5;color:#00C3F5 ;}
 </style>
