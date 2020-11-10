@@ -1,8 +1,6 @@
 <template>
 	<view class="serverView u-f">
-		
-		
-			
+		     
 			<view class="u-f-ajc" v-for="(item,index) in content" :key="index">
 				<image :src="imgUrl+item.image" mode=""></image>
 				<text>{{item.title}}</text>

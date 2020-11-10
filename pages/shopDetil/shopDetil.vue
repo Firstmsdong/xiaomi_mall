@@ -1,17 +1,18 @@
 <template>
 	<view>
-		<ShopDetilSwiper></ShopDetilSwiper>
-		<ShopDes></ShopDes>
+		<!-- 轮播 -->
+		<ShopDetilSwiper :content="dataSouce.image"></ShopDetilSwiper>
+		<!-- 描述 -->
+		<ShopDes :content="dataSouce"></ShopDes>
+		<!-- 服务 -->
 		<view class="shopDerver u-f u-f-jsb" @click="openSeverView">
 			<view class="shopDerverLeft u-f">
-				<view class="shopDerverItem u-f-ac">
-					<image src="../../static/image/success.png" mode=""></image>
-					<text>全场包邮</text>
-				</view>
-				<view class="shopDerverItem u-f-ac">
-					<image src="../../static/image/success.png" mode=""></image>
-					<text>7天无理由退货（激活后不支持）</text>
-				</view>
+				<block v-for="(item,index) in dataSouce.servicelist" :key="index">
+					<view class="shopDerverItem u-f-ac" v-if="index<2">
+						<image src="../../static/image/success.png" mode=""></image>
+						<text>{{item.title}}</text>
+					</view>
+				</block>
 			</view>
 			<view class="shopDerverRight u-f-ajc">
 				<image src="../../static/image/more.png" mode=""></image>
@@ -21,7 +22,7 @@
 		<view class="shopSpecific u-f u-f-jsb">
 			<view class="shopSpecificLeft u-f">
 				<view class="shopSpecificLeftOne u-f-ac">规格</view>
-				<view class="shopSpecificLeftTwo u-f-ac" @click="selectShop">请选择商品规格尺寸</view>
+				<view class="shopSpecificLeftTwo u-f-ac" @click="selectShop">{{specificalCon}}</view>
 			</view>
 			<view class="shopSpecificRight u-f-ajc">
 				<image src="../../static/image/more.png" mode=""></image>
@@ -37,13 +38,11 @@
 				规格参数
 			</view>
 	    </view>
-		
 		<view class="imageText" v-if="tab==0">
 			<image src="../../static/image/d1.jpg" mode="widthFix"></image>
 			<image src="../../static/image/d2.jpg" mode="widthFix"></image>
 			<image src="../../static/image/d3.jpg" mode="widthFix"></image>
 		</view>
-		
 		<view class="parameterSpecifica" v-if="tab==1">
 			<view class="parameterSpecificaTop">基础信息</view>
 			<view class="parameterSpecificaItem u-f">
@@ -67,14 +66,15 @@
 				<view class="parameterSpecificaItemRirht u-f-ac">166g</view>	
 			</view>
 		</view>
-		
-	    <view class="blank"></view>
+		<view class="blank"></view>
 		<view class="detalBttom u-f">
 			<view class="fistPage">
-				<view class="u-f-ajc">
-					<image src="../../static/image/trolley.png" mode=""></image>
-				</view>
-				<view class="u-f-ajc">首页</view>
+				<navigator url="../index/index" open-type="switchTab">
+					<view class="fistPage-image u-f-ajc">
+						<image src="../../static/image/trolley.png" mode=""></image>
+					</view>
+					<view class="fistPage-title u-f-ajc">首页</view>
+				</navigator>
 			</view>
 			<view class="cart">
 				<view class="u-f-ajc">
@@ -82,13 +82,22 @@
 				</view>
 				<view class="u-f-ajc">购物车</view>
 			</view>
-			<view class="addCart u-f-ajc">加入购物车</view>
-			<view class="buy u-f-ajc">立即购买</view>
+			<view class="addCart u-f-ajc"  @click="selBuyWay(1)">加入购物车</view>
+			<view class="buy u-f-ajc" @click="selBuyWay(2)">立即购买</view>
 		</view>
 	    <!-- 服务弹窗 -->
-		<ServerView @close="closeServerView" v-if="serverShow==true" class="server"></ServerView>
+		<ServerView @close="closeServerView" v-if="serverShow==true" class="server" :content="dataSouce.servicelist"></ServerView>
 		<!-- 选择商品规格弹框布局 -->
-		<!-- <ShopClassSel @close="closeShopsel" v-if="shopClassShow == true" class="server"></ShopClassSel> -->
+		<ShopClassSel 
+		@close="closeShopsel" 
+		v-if="shopClassShow == true" 
+		class="server" 
+		:content="dataSouce.checkAttr"
+		:attrClass="dataSouce.attr"
+		:smalltitle="dataSouce.smalltitle"
+		:type="typeway"
+		@specificationCon="specificationCon"></ShopClassSel
+		>
 		</view>
 </template>
 
@@ -107,10 +116,27 @@
 				tab:0,
 				serverShow:false,
 				shopClassShow:false,
+				dataSouce:[],
+				typeway:'',
+				specificalCon:"请选择规格尺寸",//选择的规格尺寸
 				
 			}
 		},
+		
+		onLoad(pro) {
+			this.loadShopData(pro.id)
+		},
 		methods: {
+			loadShopData(id){
+			    uni.request({
+					url:this.apiUrl+'/index/detail/id/'+id,
+				    success: (res) => {
+							this.dataSouce = res.data.data;
+							console.log(res.data.data)
+						}
+					})
+					  
+			},
 			changeTab(index){
 				this.tab = index
 			},
@@ -124,12 +150,22 @@
 			},
 			//选择商品规格页面
 			selectShop(){
-				console.log('点击了')
 				this.shopClassShow = true
 			},
 			//关闭商品规格选择弹窗页面
 			closeShopsel(){
 				this.shopClassShow = false
+			},
+			//加入购物车or立即购买
+			selBuyWay(e){
+				console.log(e)
+				this.typeway = e;
+				this.shopClassShow = true
+			},
+			// 接收子组件传过来的值
+			specificationCon(e){
+				console.log(e)
+				this.specificalCon = e;
 			}
 			
 			
@@ -163,9 +199,9 @@
 .blank{width: 100%;height: 100rpx;}
 .detalBttom{width: 100%;height: 100rpx;position: fixed;bottom: 0rpx;background-color: #FFFFFF;}
 .fistPage{width: 13.33%;height: 100rpx;font-size: 24rpx;color: #999;}
-.fistPage>view:first-child{margin-top: 10rpx;width: 100%;}
-.fistPage image{width: 40rpx;height: 40rpx;}
-.fistPage>view:last-child{line-height: 40rpx;width: 100%;text-align: center;}
+.fistPage-image{margin-top: 10rpx;width: 100%;}
+.fistPage-image image{width: 40rpx;height: 40rpx;}
+.fistPage-title{line-height: 40rpx;width: 100%;text-align: center;}
 .cart{width: 13.33%;height: 100rpx;font-size: 24rpx;color: #999;}
 .cart>view:first-child{margin-top: 10rpx;}
 .cart image{width: 40rpx;height: 40rpx;}

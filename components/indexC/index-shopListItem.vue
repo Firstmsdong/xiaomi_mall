@@ -1,5 +1,6 @@
 <template>
 	<view class="shopListItem">
+		<navigator :url="'../../pages/shopDetil/shopDetil?id='+content.id">
 		<view class="ItemImage u-f-ajc">
 			<image :src="imgUrl+content.mainimage" mode=""></image>
 		</view>
@@ -9,6 +10,7 @@
 			<view class="">{{content.summary}}</view>
 		</view>
 		<view class="itemPric">¥{{content.price}}</view>
+		</navigator>
 	</view>
 				   
 </template>

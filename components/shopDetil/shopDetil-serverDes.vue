@@ -9,34 +9,21 @@
 	                   <image src="../../static/image/error.png" mode=""></image>
 				</view>
 			</view>
-			<view class="serverCon-item">
-				<view class="serverCon-item-title u-f u-f-aj">
-					<image src="../../static/image/success.png" mode=""></image>
-					<text>花呗分期</text>
+			<block v-for="(item,index) in content" :key="index">
+				<view class="serverCon-item">
+					<view class="serverCon-item-title u-f u-f-aj">
+						<image src="../../static/image/success.png" mode=""></image>
+						<text>{{item.title}}</text>
+					</view>
+					<view class="serverCon-item-Con">{{item.summary}}</view>
 				</view>
-				<view class="serverCon-item-Con">第一步我们首先需要知道花呗分期是下单的时候选择分期，出账后根据下单选择的期数按期还款，分期一般支持，3,6,12期，点击花呗，第三步进去之后，点击分期问题，选择花呗分期是什么，如下图所示，第四步进去花呗分期是什么可以看到介绍，如果在线下使用花呗分期的话，可以使用分期码进行支付，选择分的期数，如下图所示</view>
-			</view>
-		    <view class="serverCon-item">
-		    	<view class="serverCon-item-title u-f u-f-aj">
-		    		<image src="../../static/image/success.png" mode=""></image>
-		    		<text>花呗分期</text>
-		    	</view>
-		    	<view class="serverCon-item-Con">第一步我们首先需要知道花呗分期是下单的时候选择分期，出账后根据下单选择的期数按期还款，分期一般支持，3,6,12期，点击花呗，第三步进去之后，点击分期问题，选择花呗分期是什么，如下图所示，第四步进去花呗分期是什么可以看到介绍，如果在线下使用花呗分期的话，可以使用分期码进行支付，选择分的期数，如下图所示</view>
-		    </view>
-		    <view class="serverCon-item">
-		    	<view class="serverCon-item-title u-f u-f-aj">
-		    		<image src="../../static/image/success.png" mode=""></image>
-		    		<text>花呗分期</text>
-		    	</view>
-		    	<view class="serverCon-item-Con">第一步我们首先需要知道花呗分期是下单的时候选择分期，出账后根据下单选择的期数按期还款，分期一般支持，3,6,12期，点击花呗，第三步进去之后，点击分期问题，选择花呗分期是什么，如下图所示，第四步进去花呗分期是什么可以看到介绍，如果在线下使用花呗分期的话，可以使用分期码进行支付，选择分的期数，如下图所示</view>
-		    </view>
-		    <view class="serverCon-item">
-		    	<view class="serverCon-item-title u-f u-f-aj">
-		    		<image src="../../static/image/success.png" mode=""></image>
-		    		<text>花呗分期</text>
-		    	</view>
-		    	<view class="serverCon-item-Con">第一步我们首先需要知道花呗分期是下单的时候选择分期，出账后根据下单选择的期数按期还款，分期一般支持，3,6,12期，点击花呗，第三步进去之后，点击分期问题，选择花呗分期是什么，如下图所示，第四步进去花呗分期是什么可以看到介绍，如果在线下使用花呗分期的话，可以使用分期码进行支付，选择分的期数，如下图所示</view>
-		    </view>
+			</block>
+			
+			
+			
+		   
+		   
+		   
 		    								
 		</view>
 	    <view class="sureBtn u-f-ajc" @click="closeServerView">确定</view>
@@ -47,12 +34,14 @@
 <script>
 	
 	export default {
+		
 		methods: {
 			closeServerView(){
 				console.log('关闭')
 				this.$emit('close')
 			}
-		}
+		},
+		props:["content"]
 	}
 	
 	

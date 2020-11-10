@@ -1,20 +1,29 @@
 <template>
 	<view class="shopDes">
 		<view class="shopDes-Des">
-			<text>新品</text>苹果(Apple)ipad2019新款第7代10.2寸2018款9.7英寸air2更新版平板电脑 金色 19款10.2英寸 32GWALN版标配
+			<!-- <label v-if="detail.tag==1">新品</label>
+				<label v-if="detail.tag==2">热销</label>
+				<label v-if="detail.tag==3">促销</label> -->
+			<text v-if="content.tag == 1">新品</text>
+			<text v-if="content.tag == 2">热销</text>
+			<text v-if="content.tag == 3">促销</text>
+			{{content.title}}
 		</view>
-		<view class="shopDes-active">【11.11提前购，神券疯狂抢】平板抢卷立减120元！下单抽取万元豪礼~套餐配送蓝牙耳机~，每日0点、10点、12点、20点限量发售*点击抢券</view>
+		<view class="shopDes-active">{{content.summary}}</view>
 		<view class="pricNum u-f u-f-jsb">
 			<view class="shopDes-price u-f-ac">
-				<view class="price"><text>¥</text>299</view>
-				<view class="priceBefore">    ¥5990.00</view>
+				<view class="price"><text>¥</text>{{content.price}}</view>
+				<view class="priceBefore">    ¥{{content.market_price}}</view>
 			</view>
-			<view class="mounthNum">月销量500件</view>
+			<view class="mounthNum">月销量{{content.sale}}件</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	export default{
+		props:["content"]
+	}
 </script>
 
 <style>

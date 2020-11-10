@@ -1,8 +1,7 @@
 <template>
 	<view class="shopNav u-f">
 			<view class="" v-for="(item,index) in content" :key="index">
-				
-				<navigator url="../../pages/shopDetil/shopDetil" hover-class="none">
+				<navigator :url="'../../pages/shopDetil/shopDetil?id='+item.id" hover-class="none">
 					<image :src="imgUrl+item.image" mode=""></image>
 					<text>{{item.title}}</text>
 				</navigator>
