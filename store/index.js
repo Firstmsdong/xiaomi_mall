@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 const store=new Vuex.Store({
+	// 定义参数的方法
 	state:{
 		attrVal:[],//detailAttr里的valindex [0,0]
 		attrTxt:'请选择商品规格尺寸',
 		isLogin:0
 	},
+	// 修改参数需要的方法
 	mutations:{
 		setAttr(state,data){
 			state.attrVal=data.attrVal
@@ -26,4 +28,5 @@ const store=new Vuex.Store({
 		
 	}
 })
+// 导出并在  main。js中输入
 export default store;

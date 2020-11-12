@@ -38,7 +38,21 @@
 				"navigationBarTitleText":"商品详情"
 
 			}
-        }
+        },
+		{
+            "path" : "pages/address/adslist",
+            "style" : {
+				"navigationBarTitleText":"地址列表"
+
+			}
+        },
+		{
+		    "path" : "pages/address/add-address",
+		    "style" : {
+				"navigationBarTitleText":"添加地址"
+		
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

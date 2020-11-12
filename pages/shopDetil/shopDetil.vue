@@ -111,6 +111,10 @@
 		components:{
 			ShopDetilSwiper,ShopDes,ServerView,ShopClassSel
 		},
+		// 页面生命周期-页面消失的时候
+		onUnload() {
+			this.$store.commit("defaultAttr")
+		},
 		data() {
 			return {
 				tab:0,

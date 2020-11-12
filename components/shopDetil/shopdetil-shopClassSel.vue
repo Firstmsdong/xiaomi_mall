@@ -112,8 +112,6 @@
 			closeShopsel(){
 				this.$emit('close')
 				this.$emit("specificationCon",this.specification)
-				console.log(this.valueIndex)
-				console.log(this.specification)
 				this.$store.commit("setAttr",{
 					"attrVal" : this.valueIndex,
 					"attrTxt" :  this.specification

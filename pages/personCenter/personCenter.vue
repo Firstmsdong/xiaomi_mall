@@ -45,15 +45,19 @@
 			</view>
 	    </view>
 	    <view class="menmu">
-			<view class="menmuItem u-f u-f-jsb">
-				<view class="menmuItemleft u-f-ajc">
-					<image src="../../static/image/member-menu1.png" mode=""></image>
-					<text class="u-f-ajc">收货地址</text>
+			<navigator url="../address/adslist" hover-class="none">
+				<view class="menmuItem u-f u-f-jsb">
+					<view class="menmuItemleft u-f-ajc">
+						<image src="../../static/image/member-menu1.png" mode=""></image>
+						<text class="u-f-ajc">收货地址</text>
+					</view>
+					<view class="menmuItemright u-f-ajc">
+						<image src="../../static/image/more.png" mode=""></image>
+					</view>
 				</view>
-				<view class="menmuItemright u-f-ajc">
-					<image src="../../static/image/more.png" mode=""></image>
-				</view>
-			</view>
+			</navigator>
+			
+			
 			<view class="menmuItem u-f u-f-jsb">
 				<view class="menmuItemleft u-f-ajc">
 					<image src="../../static/image/member-menu2.png" mode=""></image>
