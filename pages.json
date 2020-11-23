@@ -13,7 +13,9 @@
         }
         ,{
             "path" : "pages/shoppingCart/shoppingCart",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText":"购物车"
+			}
         }
         ,{
             "path" : "pages/personCenter/personCenter",
@@ -50,6 +52,13 @@
 		    "path" : "pages/address/add-address",
 		    "style" : {
 				"navigationBarTitleText":"添加地址"
+		
+			}
+		},
+		{
+		    "path" : "pages/address/edit-address",
+		    "style" : {
+				"navigationBarTitleText":"编辑地址"
 		
 			}
 		}

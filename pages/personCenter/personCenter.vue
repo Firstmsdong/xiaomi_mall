@@ -45,7 +45,7 @@
 			</view>
 	    </view>
 	    <view class="menmu">
-			<navigator url="../address/adslist" hover-class="none">
+			<navigator url="../address/adslist?back=1" hover-class="none">
 				<view class="menmuItem u-f u-f-jsb">
 					<view class="menmuItemleft u-f-ajc">
 						<image src="../../static/image/member-menu1.png" mode=""></image>
@@ -106,14 +106,14 @@
 			
 		},
 		onShow() {
+			// 获取用户信息
 			this.getInfor()
 		},
 		methods: {
 			getInfor(){
 				this.$request('/member/index')
 				.then(res=>{
-					console.log(res)
-					this.code = res.code
+					this.code = res.tcode
 					this.member = res.data;
 				})	
 			},
