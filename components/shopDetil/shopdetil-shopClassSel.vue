@@ -42,7 +42,7 @@
 							</view>
 						</view>
 					</view>
-				    <view class="shopDeslCon-bttom">{{buttonName}}</view>
+				    <view class="shopDeslCon-bttom" @click="addCateOrPay">{{buttonName}}</view>
 				</view>
 			</view>
 		</view>
@@ -60,6 +60,7 @@
 			    storeNum:"",//库存
 				specification:"",// 选中的规格
 				buttonName:"",// 按钮名称
+				attrid:'',//商品id
 			}
 		},
 		mounted() {
@@ -79,10 +80,6 @@
 				this.specification = this.emptData.join(' ')
 				this.getClass()
 			}
-			
-			
-		  
-		   
 		   // 获取按钮名称
 		   if(this.type == 1){
 			   this.buttonName = "加入购物车";
@@ -105,6 +102,7 @@
 					if(this.attrClass[i].attr_0 == this.emptData[0] && this.attrClass[i].attr_1 == this.emptData[1]){
 						this.price = this.attrClass[i].price
 						this.storeNum = this.attrClass[i].stock
+						this.attrid = this.attrClass[i].id
 						break
 					}
 				}
@@ -126,8 +124,24 @@
 			},
 			addNum(){
 				this.num ++
+			},
+			// 加入购车车还是支付
+			addCateOrPay(){
+				if(this.type == 1){
+					console.log('加入购物车')
+					
+				   this.$request('/member/addcart',{
+					   "num":this.num,"attrid":this.attrid
+				   }).then(res=>{
+					   console.log(res)
+					   if(res.code ==1){
+						   uni.switchTab({
+						   	url:'../../pages/shoppingCart/shoppingCart'
+						   })
+					   }
+				   })
+				}
 			}
-			
 		},
 		props:["content","attrClass","smalltitle","type"]
 	}

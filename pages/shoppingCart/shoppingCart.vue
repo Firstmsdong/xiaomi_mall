@@ -1,61 +1,64 @@
 <template>
 	<view>
-	     <view class="cateItem u-f">
-	     	<view class="cateItem-sel u-f-ajc">
-	     		<image src="../../static/image/checkbox1.png" mode=""></image>
-	     	</view>
-			<view class="cateItem-img">
-				<image src="../../static/image/dimg1.jpg" mode=""></image>
-			</view>
-			<view class="cateItem-con">
-				<view class="cateItem-con-des u-f-aj">苹果（Apple）ipad2019款第七代 10.2英寸2018款9.7英寸air2更新版,10.2英寸2018款9.7英寸air2更新版</view>
-				<view class="cateItem-con-cals">appad 黑色</view>
-				<view class="cateItem-con-price-input u-f u-f-jsb u-f-aj">
-					<view class="cateItem-con-price">¥299</view>
-					<view class="cateItem-con-add-reduce u-f">
-						<view class="ateItem-con-reduce">-</view>
-						<view class="ateItem-con-input">
-							<input type="text" value="1" />
-						</view>
-						<view class="ateItem-con-add">+</view>
-							
-						
-					</view>	
-				</view>
-			</view>
-	     </view>
-	</view>
+		<!-- 购物车列表 -->
+		<view class="cateList" v-for="(item,index) in dataSouce" :key="index">
+		    <CartItem :content="item" :index="index"  @selshopClick="selshopClick" @selshopIndex="selshopIndex"></CartItem>
+	    </view>
+		<view class="blank"></view>
+	    <!-- 底部视图 -->
+		<CartBttomView></CartBttomView>
+		</view>
 </template>
 
 <script>
+	import CartItem from '../../components/Cart/cart-item.vue'
+	import CartBttomView from '../../components/Cart/cart-bttomView.vue'
 	export default {
+		components:{
+			CartItem,CartBttomView
+		},
 		data() {
 			return {
-				
+				dataSouce:[],
+				selshopIndex:'',//点击列表左侧按钮，点击的值
 			}
 		},
+		onShow() {
+			this.getData()
+		},
 		methods: {
-			
+			// 获取购物车列表数据
+			getData(){
+				this.$request("/member/cartlist").then(res=>{
+					for(var i = 0;i<res.data.length;i++){
+						this.dataSouce.push({
+							'id': res.data[i].id,
+							"attrid": res.data[i].attrid,
+							"flag": res.data[i].flag,
+							"num": res.data[i].num,
+							"attr_0": res.data[i].attr_0,
+							"attr_1": res.data[i].attr_1,
+							"price": res.data[i].price,
+							"stock": res.data[i].stock,
+							"mainimage": res.data[i].mainimage,
+							"title": res.data[i].title,
+							"defaultSel":'1'
+						})
+					}
+					
+				})
+			},
+			// 列表反选
+			selshopClick(){
+				console.log('000000000');
+				console.log(this.selshopIndex);
+				// index
+			}
 		}
 	}
 </script>
 
 <style>
-	.cateItem{width: 100%;height: 270rpx;border-bottom: 1rpx solid #000000;}
-	.cateItem-sel{margin-left: 20rpx;height: 270rpx;width: 35rpx;height: 200rpx;margin-top: 35rpx;}
-    .cateItem-sel image{width: 35rpx;height: 35rpx;}
-	.cateItem-img{height: 200rpx;margin-top: 35rpx;}
-	.cateItem-img image{width: 200rpx;height: 200rpx;}
-	.cateItem-con {margin-right: 20rpx;height: 200rpx;margin-top: 35rpx;}
-	.cateItem-con-des{flex: 1;line-height: 40rpx;height: 80rpx;text-overflow: -o-ellipsis-lastline;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;
--webkit-line-clamp: 2;line-clamp: 2; -webkit-box-orient: vertical;font-size: 28rpx;}
-    .cateItem-con-cals{line-height: 40rpx;height: 40rpx;font-size: 24rpx;text-align: left;color: #AAAAAA;}
-	.cateItem-con-price-input{height: 80rpx;}
-	.cateItem-con-price{height: 80rpx;line-height: 80rpx;font-size: 28rpx;color: #FF0000;}
-	.cateItem-con-price-input{height: 80rpx;}
-	.cateItem-con-add-reduce{margin-top: 17.5rpx;}
-	.ateItem-con-reduce{border: 1rpx solid #C0C0C0;width: 45rpx;height: 45rpx;text-align: center;}
-	.ateItem-con-add{border: 1rpx solid #C0C0C0;width: 45rpx;height: 45rpx;text-align: center;}
-	.ateItem-con-input input{width: 65rpx;height: 45rpx;border-top: 1rpx solid #C0C0C0;border-bottom: 1rpx solid #C0C0C0;text-align: center;}
+	.blank{width: 100%;height: 10rpx;}
 	
 </style>
