@@ -128,8 +128,6 @@
 			// 加入购车车还是支付
 			addCateOrPay(){
 				if(this.type == 1){
-					console.log('加入购物车')
-					
 				   this.$request('/member/addcart',{
 					   "num":this.num,"attrid":this.attrid
 				   }).then(res=>{
@@ -140,6 +138,10 @@
 						   })
 					   }
 				   })
+				}else{
+					uni.navigateTo({
+						url:'../../pages/order/order-buyShop'
+					})
 				}
 			}
 		},

@@ -1,18 +1,18 @@
 <template>
 	<view class="bttomView u-f-ac u-f-jsb">
-			<view class="allsel u-f">
+			<view class="allsel u-f" @click="allSelClick">
 				<view class="allsel-img u-f u-f-ac">
-					<image src="../../static/image/checkbox.png" mode=""></image>
-					<!-- <image src="../../static/image/checkbox.png" mode=""></image> -->
+					<image src="../../static/image/checkbox.png" mode="" v-if="allsel==false"></image>
+					<image src="../../static/image/checkbox1.png" mode=""  v-if="allsel==true"></image>
 				</view>
 				<view class="allsel-title">全选</view>
 			</view>
 			<view class="pricePay u-f">
 				<view class="pricePay-title">总计</view>
-				<view class="pricePay-price">¥299</view>
+				<view class="pricePay-price">¥{{money}}</view>
 				<view class="pricePay-gopay u-f u-f-ajc">
 					<view class="pricePay-gopay-title">去结算</view>
-					<view class="pricePay-gopay-con">(1件)</view>
+					<view class="pricePay-gopay-con">({{cartnum}}件)</view>
 				</view>
 			</view>
 		</view>
@@ -20,6 +20,16 @@
 </template>
 
 <script>
+	
+	export default{
+		props:["allsel","money","cartnum"],
+		methods:{
+			allSelClick(){
+				this.$emit('allSelClick')
+				
+			}
+		}
+	}
 </script>
 
 <style>

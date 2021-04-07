@@ -71,8 +71,6 @@
 			}else{
 				this.back=0
 			}
-			
-			
 		},
 		methods: {
 			// 获取地址列表请求

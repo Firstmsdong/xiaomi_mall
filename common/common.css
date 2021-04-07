@@ -1,7 +1,12 @@
 /* flex布局 */
-.u-f,.u-f-ac,.u-f-ajc{
+.u-f,.u-f-ac,.u-f-ajc,.u-f-jc{
 	display: flex;
 }
+.u-ff-aj{
+	align-items: ;
+}
+/* 水平方向居中 */
+.u-f-jc{justify-content: center;}
 .u-f-ac,.u-f-ajc{
 	align-items: center;
 }

@@ -16,4 +16,6 @@
 	/*每个页面公共css */
 	/* 公共样式 */
 	@import './common/common.css';
+	/* 图标库文件 */
+	@import './common/icon.css';
 </style>

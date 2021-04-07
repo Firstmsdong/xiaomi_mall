@@ -1,8 +1,8 @@
 <template>
 			<view class="cateItem u-f">
 				<view class="cateItem-sel u-f-ajc" @click="selshopClick">
-					<image src="../../static/image/checkbox1.png" v-if="content.defaultSel == 1" mode=""></image>
-					<image src="../../static/image/checkbox.png" v-if="content.defaultSel == 0" mode=""></image>
+					<image src="../../static/image/checkbox1.png" v-if="content.defaultSel == true" mode=""></image>
+					<image src="../../static/image/checkbox.png" v-if="content.defaultSel == false" mode=""></image>
 				</view>
 						<view class="cateItem-img">
 							<image :src="imgUrl+content.mainimage" mode=""></image>
@@ -13,11 +13,11 @@
 							<view class="cateItem-con-price-input u-f u-f-jsb u-f-aj">
 								<view class="cateItem-con-price">¥{{content.price}}</view>
 								<view class="cateItem-con-add-reduce u-f">
-									<view class="ateItem-con-reduce">-</view>
+									<view class="ateItem-con-reduce" @click="reduceNum">-</view>
 									<view class="ateItem-con-input">
 										<input type="text" :value="content.num" />
 									</view>
-									<view class="ateItem-con-add">+</view>
+									<view class="ateItem-con-add" @click="addNum">+</view>
 										
 									
 								</view>	
@@ -31,9 +31,25 @@
 		props:["content","index"],
 		methods:{
 			selshopClick(){
-				this.$emit('selshopClick')
 				this.$emit("selshopIndex",this.index)
+				this.$emit('selshopClick')
+				
+			},
+			//减少 商品
+			reduceNum(){
+				this.$emit("selshopIndex",this.index)
+				this.$emit('reduceNumClick')
+				
+			},
+			// 增加商品
+			addNum(){
+				this.$emit("selshopIndex",this.index)
+				this.$emit('addNumClick')
 			}
+			
+		},
+		created() {
+			
 		}
 	}
 	
